@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "592285081532",
+    "project_id": "designup-6a63c",
+    "storage_bucket": "designup-6a63c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:592285081532:android:b36797836a8b008cd555b9",
+        "android_client_info": {
+          "package_name": "com.example.designui"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "592285081532-lhslrg9fd6kep3gub2e0h7623g93gt79.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.designui",
+            "certificate_hash": "449378a8bb63838990c2f464363a1946f2459b49"
+          }
+        },
+        {
+          "client_id": "592285081532-da1jo4ep3la6jv2b30abe4m3jjtmr4b8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByLojnePTd2dOBtVSstHld88txZjBNnqA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "592285081532-da1jo4ep3la6jv2b30abe4m3jjtmr4b8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

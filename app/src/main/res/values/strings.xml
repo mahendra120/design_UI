@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">design UI</string>
+    <string name="title_activity_lanching_page">LanchingPage</string>
+    <string name="title_activity_intero_screens">InteroScreens</string>
+    <string name="title_activity_sign_up_with_google">SignUpWithGoogle</string>
+    <string name="title_activity_user_sign_up_page">UserSignUpPage</string>
+    <string name="title_activity_user_login_page">UserLoginPage</string>
+    <string name="title_activity_categories">Categories</string>
+    <string name="title_activity_polupar_courses">Polupar_Courses</string>
+</resources>
