@@ -208,7 +208,10 @@ class MainActivity : ComponentActivity() {
                         fontSize = 19.sp,
                         modifier = Modifier.padding(top = 14.dp)
                     )
-                    TextButton(onClick = {}, modifier = Modifier.padding(top = 4.dp)) {
+                    TextButton(onClick = {
+                        val intent = Intent(this@MainActivity, Polupar_Courses::class.java)
+                        startActivity(intent)
+                    }, modifier = Modifier.padding(top = 4.dp)) {
                         Text("See All ", color = Color.Blue, fontFamily = Poppins)
                     }
                 }

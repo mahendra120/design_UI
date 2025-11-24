@@ -132,7 +132,9 @@ class Categories : ComponentActivity() {
             },
             navigationIcon = {
                 IconButton(
-                    onClick = {},
+                    onClick = {
+                        finish()
+                    },
                     modifier = Modifier.padding(start = 10.dp, top = 30.dp),
                     colors = IconButtonDefaults.iconButtonColors(containerColor = Color.Transparent)
                 ) {
