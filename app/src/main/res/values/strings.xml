@@ -7,4 +7,5 @@
     <string name="title_activity_user_login_page">UserLoginPage</string>
     <string name="title_activity_categories">Categories</string>
     <string name="title_activity_polupar_courses">Polupar_Courses</string>
+    <string name="title_activity_mentors_screen">MentorsScreen</string>
 </resources>

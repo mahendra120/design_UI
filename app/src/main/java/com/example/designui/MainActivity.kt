@@ -58,6 +58,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
+import com.example.designui.Polupar_Courses
 import com.example.designui.ui.theme.Poppins
 
 class MainActivity : ComponentActivity() {
