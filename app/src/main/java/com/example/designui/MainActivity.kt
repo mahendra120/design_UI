@@ -1,6 +1,7 @@
 package com.example.designui
 
 import android.content.Intent
+import android.graphics.fonts.Font
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -50,16 +51,19 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
-import com.example.designui.Polupar_Courses
 import com.example.designui.ui.theme.Poppins
+import com.example.designui.ui.theme.pain
 
 class MainActivity : ComponentActivity() {
     var search by mutableStateOf("")
@@ -249,87 +253,122 @@ class MainActivity : ComponentActivity() {
                 }
 
                 LazyRow(modifier = Modifier.padding(horizontal = 10.dp, vertical = 0.dp)) {
-                    items(showList) { name ->
+                    itemsIndexed(showList.take(6)) { index, name ->
                         val selectedCategory = name.category
                         val selectedItem = name.item
-                        Card(
-                            onClick = {},
-                            modifier = Modifier
-                                .height(230.dp)
-                                .width(280.dp)
-                                .padding(10.dp),
-                            shape = RoundedCornerShape(12.dp),
-                            elevation = CardDefaults.cardElevation(10.dp),
-                            colors = CardDefaults.cardColors(contentColor = Color.Black)
-                        ) {
-                            Column(modifier = Modifier.fillMaxSize()) {
-                                Box(modifier = Modifier.weight(.5f)) {
-                                    Card(
-                                        modifier = Modifier.fillMaxSize(),
-                                        colors = CardDefaults.cardColors(
-                                            containerColor = Color(
-                                                0, 0, 0
-                                            )
-                                        )
-                                    ) {
-
-                                    }
-                                }
-                                Box(
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .weight(.5f)
-                                        .background(Color.White)
-                                ) {
-                                    Column {
-                                        Row(
-                                            modifier = Modifier
-                                                .fillMaxWidth()
-                                                .padding(horizontal = 10.dp, vertical = 5.dp),
-                                            horizontalArrangement = Arrangement.SpaceBetween
-                                        ) {
-                                            Text(
-                                                "$selectedCategory",
-                                                fontSize = 15.sp,
-                                                color = Color(255, 107, 0),
-                                                modifier = Modifier.padding(
-                                                    start = 10.dp,
-                                                    top = 5.dp
+                        if (index < 5) {
+                            Card(
+                                onClick = {},
+                                modifier = Modifier
+                                    .height(230.dp)
+                                    .width(280.dp)
+                                    .padding(10.dp),
+                                shape = RoundedCornerShape(12.dp),
+                                elevation = CardDefaults.cardElevation(10.dp),
+                            )
+                            {
+                                Column(modifier = Modifier.fillMaxSize()) {
+                                    Box(modifier = Modifier.weight(.5f)) {
+                                        Card(
+                                            modifier = Modifier.fillMaxSize(),
+                                            colors = CardDefaults.cardColors(
+                                                containerColor = Color(
+                                                    0, 0, 0
                                                 )
                                             )
-                                            Icon(Icons.Default.Save, contentDescription = null)
-                                        }
-                                        Text(
-                                            "$selectedItem",
-                                            fontSize = 18.sp,
-                                            modifier = Modifier
-                                                .fillMaxWidth()
-                                                .padding(top = 7.dp, start = 10.dp),
-                                            textAlign = TextAlign.Start
-                                        )
-                                        Row(
-                                            modifier = Modifier
-                                                .padding(start = 10.dp, top = 10.dp)
-                                                .fillMaxWidth()
-                                                .height(30.dp),
-                                            horizontalArrangement = Arrangement.Absolute.Center
                                         ) {
-                                            Text(
-                                                "$28  ",
-                                                fontSize = 15.sp,
-                                                color = Color(9, 97, 245)
-                                            )
-                                            Text(
-                                                "|  ⭐4.8  |  ",
-                                                fontSize = 15.sp,
-                                                color = Color.Black
-                                            )
-                                            Text(
-                                                "|  1100std  ",
-                                                fontSize = 15.sp,
-                                                color = Color.Black
-                                            )
+
                                         }
+                                    }
+                                    Box(
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .weight(.5f)
+                                            .background(Color.White)
+                                    ) {
+                                        Column {
+                                            Row(
+                                                modifier = Modifier
+                                                    .fillMaxWidth()
+                                                    .padding(horizontal = 10.dp, vertical = 5.dp),
+                                                horizontalArrangement = Arrangement.SpaceBetween
+                                            ) {
+                                                Text(
+                                                    "$selectedCategory",
+                                                    fontSize = 15.sp,
+                                                    color = Color(255, 107, 0),
+                                                    modifier = Modifier.padding(
+                                                        start = 10.dp,
+                                                        top = 5.dp
+                                                    )
+                                                )
+                                                Icon(Icons.Default.Save, contentDescription = null)
+                                            }
+                                            Text(
+                                                "$selectedItem",
+                                                fontSize = 18.sp,
+                                                modifier = Modifier
+                                                    .fillMaxWidth()
+                                                    .padding(top = 7.dp, start = 10.dp),
+                                                textAlign = TextAlign.Start
+                                            )
+                                            Row(
+                                                modifier = Modifier
+                                                    .padding(start = 10.dp, top = 10.dp)
+                                                    .fillMaxWidth()
+                                                    .height(30.dp),
+                                                horizontalArrangement = Arrangement.Absolute.Center
+                                            ) {
+                                                Text(
+                                                    "$28  ",
+                                                    fontSize = 15.sp,
+                                                    color = Color(9, 97, 245)
+                                                )
+                                                Text(
+                                                    "|  ⭐4.8  |  ",
+                                                    fontSize = 15.sp,
+                                                    color = Color.Black
+                                                )
+                                                Text(
+                                                    "|  1100std  ",
+                                                    fontSize = 15.sp,
+                                                    color = Color.Black
+                                                )
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        } else {
+                            Card(
+                                onClick = {},
+                                modifier = Modifier
+                                    .height(230.dp)
+                                    .width(280.dp)
+                                    .padding(10.dp),
+                                shape = RoundedCornerShape(12.dp),
+                                elevation = CardDefaults.cardElevation(10.dp),
+                            )
+                            {
+                                Box(
+                                    modifier = Modifier
+                                        .fillMaxSize()
+                                        .background(Color.White.copy(.5f)),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    TextButton(onClick = {
+                                        val intent =
+                                            Intent(this@MainActivity, Online_Courses::class.java)
+                                        startActivity(intent)
+                                    })
+                                    {
+                                        Text(
+                                            "See All",
+                                            fontSize = 18.sp,
+                                            color = Color.Blue,
+                                            fontFamily = pain,
+                                            fontWeight = FontWeight.Bold
+                                        )
                                     }
                                 }
                             }
@@ -343,16 +382,26 @@ class MainActivity : ComponentActivity() {
                     horizontalArrangement = Arrangement.SpaceBetween
                 )
                 {
-                    Text("Top Mentor", fontSize = 18.sp, fontFamily = Poppins)
                     Text(
-                        "See All ",
-                        fontSize = 14.sp,
+                        "Top Mentor",
+                        fontSize = 18.sp,
                         fontFamily = Poppins,
-                        color = Color.Blue,
-                        modifier = Modifier.padding(
-                            top = 3.dp
-                        )
+                        modifier = Modifier.padding(top = 15.dp, start = 5.dp)
                     )
+                    TextButton(onClick = {
+                        val intent = Intent(this@MainActivity, MentorsScreen::class.java)
+                        startActivity(intent)
+                    }) {
+                        Text(
+                            "See All ",
+                            fontSize = 14.sp,
+                            fontFamily = Poppins,
+                            color = Color.Blue,
+                            modifier = Modifier.padding(
+                                top = 3.dp
+                            )
+                        )
+                    }
                 }
                 LazyRow(
                     modifier = Modifier

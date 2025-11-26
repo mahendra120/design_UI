@@ -52,45 +52,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.designui.ui.theme.Poppins
 import com.example.designui.ui.theme.pain
-
-
-/*
-     IconButton(onClick = {}) {
-                    Image(
-                        painter = painterResource(R.drawable.group_55),
-                        modifier = Modifier.size(25.dp),
-                        contentDescription = null,  colorFilter = ColorFilter.tint(Color.Black)
-                    )
-                }
-                IconButton(onClick = {}) {
-                    Image(
-                        painter = painterResource(R.drawable.group_56),
-                        modifier = Modifier.size(25.dp),
-                        contentDescription = null
-                    )
-                }
-                IconButton(onClick = {}) {
-                    Image(
-                        painter = painterResource(R.drawable.group_57),
-                        modifier = Modifier.size(25.dp),
-                        contentDescription = null
-                    )
-                }
-                IconButton(onClick = {}) {
-                    Image(
-                        painter = painterResource(R.drawable.group_58),
-                        modifier = Modifier.size(25.dp),
-                        contentDescription = null
-                    )
-                }
-                IconButton(onClick = {}) {
-                    Image(
-                        painter = painterResource(R.drawable.group_59),
-                        modifier = Modifier.size(25.dp),
-                        contentDescription = null
-                    )
-                }
- */
 class Polupar_Courses : ComponentActivity() {
     var selectedCategory by mutableStateOf("All")
     var selectedindex by mutableStateOf(0)
@@ -115,7 +76,6 @@ class Polupar_Courses : ComponentActivity() {
             }
         }
     }
-
     @Composable
     @Preview(showBackground = true)
     fun UI() {
@@ -283,8 +243,6 @@ class Polupar_Courses : ComponentActivity() {
         "PROFILE" to R.drawable.group_58,
         "MY COURSES" to R.drawable.group_59
     )
-
-
     @Composable
     fun BottomBar() {
         BottomAppBar {
@@ -321,7 +279,6 @@ class Polupar_Courses : ComponentActivity() {
             }
         }
     }
-
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     fun Topbar() {
