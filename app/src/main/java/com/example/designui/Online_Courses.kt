@@ -11,8 +11,10 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
@@ -21,10 +23,11 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -36,10 +39,10 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -49,86 +52,148 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.isTraversalGroup
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.traversalIndex
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.designui.ui.theme.Poppins
+import com.example.designui.ui.theme.font2
+import com.example.designui.ui.theme.pain
 
 class Online_Courses : ComponentActivity() {
     var selectedIndex by mutableStateOf(0)
+    var selectedColor by mutableStateOf("1")
 
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            Scaffold(   
+            Scaffold(
                 modifier = Modifier.fillMaxSize(),
                 topBar = { Topbar() },
                 bottomBar = { BottomBar() }) { innerPadding ->
-                Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(innerPadding)
-                        .background(Color(245, 249, 255))
-                ) {
-                    UI()
-                }
+                UI()
             }
         }
     }
 
+    data class Mentor(
+        val image: Int,
+        val name: String,
+        val work: String,
+    )
+
+    val mentorslist = listOf(
+        Mentor(R.drawable.mentors, "William K. Olivas", "3D Design"),
+        Mentor(R.drawable.mentors, "Donald S. Channel", "Arts & Humanities"),
+        Mentor(R.drawable.mentors, "Elvira E. Limones", "personal Development"),
+        Mentor(R.drawable.mentors, "Scott S, Simpson", "SEC & Marketing"),
+        Mentor(R.drawable.mentors, "Patricia G. peters", "office Productivity"),
+        Mentor(R.drawable.mentors, "Carmen P. Mercado", "Web Developer"),
+        Mentor(R.drawable.kakashi_hatake, "kakashi  Hatake", "ninjutsu sensei"),
+    )
+
     @Composable
     @Preview(showBackground = true)
     fun UI() {
-        data class Mentor(
-            val image: Int,
-            val name: String,
-            val work: String,
-        )
-
-        val mentorslist = listOf(
-            Mentor(R.drawable.mentors, "William K. Olivas", "3D Design"),
-            Mentor(R.drawable.mentors, "Donald S. Channel", "Arts & Humanities"),
-            Mentor(R.drawable.mentors, "Elvira E. Limones", "personal Development"),
-            Mentor(R.drawable.mentors, "Scott S, Simpson", "SEC & Marketing"),
-            Mentor(R.drawable.mentors, "Patricia G. peters", "office Productivity"),
-            Mentor(R.drawable.mentors, "Carmen P. Mercado", "Web Developer"),
-            Mentor(R.drawable.kakashi_hatake, "kakashi  Hatake", "ninjutsu sensei"),
-        )
-        var results by remember { mutableStateOf(mentorslist) }
-        var Serachbar by remember { mutableStateOf("") }
-        LazyColumn(modifier = Modifier.fillMaxSize()) {
-            item {
-                SimpleSearchBar(
-                    Serachbar,
-                    onSearch = { query ->
-                        results = mentorslist.filter {
-                            it.name.contains(query, ignoreCase = true) ||
-                                    it.work.contains(query, ignoreCase = true)
-                        }
-                    },
-                    searchResults = results,
-                )
-                Row(modifier = Modifier.fillMaxWidth())
-                {
-                    Button(
-                        onClick = {},
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .weight(.5f)
-                            .padding(horizontal = 10.dp)
-                    ) {
-                        Text("Courses")
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding()
+                .background(Color(245, 249, 255))
+        ) {
+            var searchText by remember { mutableStateOf("") }
+            var results by remember { mutableStateOf(mentorslist) }
+            LaunchedEffect(searchText) {
+                results = if (searchText.isBlank()) {
+                    mentorslist
+                } else {
+                    mentorslist.filter {
+                        it.name.contains(searchText, ignoreCase = true) ||
+                                it.work.contains(searchText, ignoreCase = true)
                     }
-                    Button(
-                        onClick = {},
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .weight(.5f)
-                            .padding(horizontal = 10.dp)
-                    ) {
-                        Text("Mentors")
+                }
+            }
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(top = 50.dp)
+            ) {
+                item {
+                    SimpleSearchBar(
+                        searchText = searchText,
+                        onSearchTextChange = { newText ->
+                            searchText = newText
+                        },
+                        onSearch = { query ->
+                            results = mentorslist.filter {
+                                it.name.contains(query, ignoreCase = true) ||
+                                        it.work.contains(query, ignoreCase = true)
+                            }
+                        },
+                        searchResults = results,
+                    )
+                    Spacer(modifier = Modifier.padding(top = 20.dp))
+                    Row(modifier = Modifier.fillMaxWidth()) {
+                        Button(
+                            onClick = {
+                                selectedColor = 1.toString()
+                            },
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .weight(.5f)
+                                .height(55.dp)
+                                .padding(start = 10.dp, end = 10.dp),
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = if (selectedColor == "1") Color(
+                                    22,
+                                    127,
+                                    113
+                                ) else Color(232, 241, 255)
+                            )
+                        ) {
+                            Text(
+                                "Courses",
+                                fontSize = 18.sp,
+                                fontWeight = FontWeight.Bold,
+                                fontFamily = pain,
+                                color = if (selectedColor == "1") Color(253, 253, 253) else Color(
+                                    0,
+                                    0,
+                                    0
+                                )
+                            )
+                        }
+                        Button(
+                            onClick = {
+                                selectedColor = 0.toString()
+                            },
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .weight(.5f)
+                                .height(55.dp)
+                                .padding(start = 10.dp, end = 10.dp),
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = if (selectedColor != "1") Color(
+                                    22,
+                                    127,
+                                    113
+                                ) else Color(232, 241, 255)
+                            )
+                        ) {
+                            Text(
+                                "Mentors", fontSize = 18.sp,
+                                fontWeight = FontWeight.Bold, fontFamily = pain,
+                                color = if (selectedColor != "1") Color(252, 252, 252) else Color(
+                                    0,
+                                    0,
+                                    0
+                                )
+                            )
+                        }
+                    }
+                    Card() {
+
                     }
                 }
             }
@@ -141,12 +206,18 @@ class Online_Courses : ComponentActivity() {
         TopAppBar(
             modifier = Modifier.padding(start = 10.dp, end = 10.dp),
             colors = TopAppBarDefaults.topAppBarColors(containerColor = Color(245, 249, 255)),
-            title = { Text("Online Courses ", fontFamily = Poppins, fontSize = 24.sp) },
+            title = {
+                Text(
+                    "Online Courses ",
+                    fontFamily = font2,
+                    fontSize = 24.sp
+                )
+            },
             navigationIcon = {
                 IconButton(onClick = { finish() }) {
                     Icon(
                         Icons.AutoMirrored.Filled.ArrowBack,
-                        contentDescription = null,
+                        contentDescription = "Back",
                         modifier = Modifier.size(30.dp)
                     )
                 }
@@ -155,8 +226,8 @@ class Online_Courses : ComponentActivity() {
                 IconButton(onClick = {}) {
                     Icon(
                         Icons.Default.Search,
-                        contentDescription = null,
-                        modifier = Modifier.Companion.size(30.dp)
+                        contentDescription = "Search",
+                        modifier = Modifier.size(30.dp)
                     )
                 }
             })
@@ -179,12 +250,12 @@ class Online_Courses : ComponentActivity() {
             ) {
                 image.forEachIndexed { index, items ->
                     val name = items.first
-                    val image = items.second
+                    val imageRes = items.second
                     val isSelected = index == selectedIndex
                     val imagecolor = if (isSelected) Color(22, 127, 113) else Color(0, 0, 0)
                     val textColor = if (isSelected) Color(22, 127, 113) else Color(0, 0, 0)
                     Column(
-                        modifier = Modifier.Companion,
+                        modifier = Modifier,
                         verticalArrangement = Arrangement.SpaceEvenly,
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
@@ -192,13 +263,13 @@ class Online_Courses : ComponentActivity() {
                             selectedIndex = index
                         }) {
                             Image(
-                                painter = painterResource(image),
-                                contentDescription = null,
+                                painter = painterResource(imageRes),
+                                contentDescription = name,
                                 colorFilter = ColorFilter.tint(imagecolor),
                                 modifier = Modifier.size(22.dp)
                             )
                         }
-                        Text("$name", fontSize = 12.sp, color = textColor)
+                        Text(name, fontSize = 12.sp, color = textColor)
                     }
                 }
             }
@@ -208,12 +279,13 @@ class Online_Courses : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     fun SimpleSearchBar(
-        textFieldState: String,
+        searchText: String,
+        onSearchTextChange: (String) -> Unit,
         onSearch: (String) -> Unit,
-        searchResults: List<Any>,
+        searchResults: List<Mentor>,
         modifier: Modifier = Modifier
     ) {
-        var expanded by rememberSaveable { mutableStateOf(false) }
+        var expanded by remember { mutableStateOf(false) }
         Box(
             modifier
                 .fillMaxWidth()
@@ -221,44 +293,44 @@ class Online_Courses : ComponentActivity() {
         ) {
             SearchBar(
                 modifier = Modifier
+                    .padding(horizontal = 18.dp)
                     .align(Alignment.TopCenter)
                     .semantics { traversalIndex = 0f },
                 colors = SearchBarDefaults.colors(containerColor = Color(255, 255, 255)),
                 shape = RoundedCornerShape(15.dp),
-                inputField = {
-                    SearchBarDefaults.InputField(
-                        query = textFieldState,
-                        onQueryChange = {
-
-                        },
-                        onSearch = {
-                            onSearch(textFieldState)
-                            expanded = false
-                        },
-                        expanded = expanded,
-                        onExpandedChange = { expanded = it },
-                        trailingIcon = {
-                            IconButton(onClick = {
-                                expanded = false
-                            }) {
-                                Icon(
-                                    Icons.Default.Close,
-                                    contentDescription = null
-                                )
-                            }
-                        },
-                        placeholder = { Text("Search", fontFamily = Poppins, fontSize = 19.sp) }
-                    )
+                query = searchText,
+                onQueryChange = { query ->
+                    onSearchTextChange(query)
+                    onSearch(query)
                 },
-                expanded = expanded,
-                onExpandedChange = { expanded = it },
+                onSearch = {
+                    expanded = false
+                    onSearch(it)
+                },
+                active = expanded,
+                onActiveChange = { expanded = it },
+                placeholder = {
+                    Text(
+                        "Search",
+                        fontFamily = pain, // Use default or define Poppins
+                        fontSize = 19.sp
+                    )
+                }
             ) {
                 Column(Modifier.verticalScroll(rememberScrollState())) {
                     searchResults.forEach { result ->
                         ListItem(
-                            headlineContent = { Text(result.toString()) },
+                            headlineContent = { Text(result.name) },
+                            supportingContent = { Text(result.work) },
+                            leadingContent = {
+                                Image(
+                                    painter = painterResource(result.image),
+                                    contentDescription = "Mentor image"
+                                )
+                            },
                             modifier = Modifier
                                 .clickable {
+                                    expanded = false
                                 }
                                 .fillMaxWidth()
                         )
@@ -268,3 +340,4 @@ class Online_Courses : ComponentActivity() {
         }
     }
 }
+

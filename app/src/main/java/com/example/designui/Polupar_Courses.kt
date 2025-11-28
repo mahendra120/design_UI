@@ -50,7 +50,7 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.designui.ui.theme.Poppins
+import com.example.designui.ui.theme.font2
 import com.example.designui.ui.theme.pain
 class Polupar_Courses : ComponentActivity() {
     var selectedCategory by mutableStateOf("All")
@@ -129,7 +129,7 @@ class Polupar_Courses : ComponentActivity() {
                     ) {
                         Text(
                             category,
-                            fontFamily = Poppins,
+                            fontFamily = font2,
                             fontSize = 14.sp,
                             color = if (selectedindex == index) Color(
                                 255, 255, 255
@@ -184,7 +184,7 @@ class Polupar_Courses : ComponentActivity() {
                                     Spacer(modifier = Modifier.Companion.padding(5.dp))
                                     Text(
                                         text = items.item,
-                                        fontFamily = Poppins,
+                                        fontFamily = font2,
                                         fontSize = 16.sp,
                                         color = Color.Companion.Black
                                     )
@@ -200,7 +200,7 @@ class Polupar_Courses : ComponentActivity() {
                                             fontSize = 19.sp,
                                             color = Color.Companion.Blue,
                                             fontWeight = FontWeight.Companion.ExtraBold,
-                                            fontFamily = Poppins,
+                                            fontFamily = font2,
                                             modifier = Modifier.Companion.padding(end = 5.dp)
                                         )
                                         Text(
@@ -208,7 +208,7 @@ class Polupar_Courses : ComponentActivity() {
                                             fontSize = 17.sp,
                                             color = Color.Companion.Gray,
                                             fontWeight = FontWeight.Companion.ExtraBold,
-                                            fontFamily = Poppins,
+                                            fontFamily = font2,
                                             textDecoration = TextDecoration.Companion.LineThrough,
                                             modifier = Modifier.Companion.padding(top = 1.dp)
                                         )
@@ -222,7 +222,7 @@ class Polupar_Courses : ComponentActivity() {
                                         )
                                         Text(
                                             "7830 Std",
-                                            fontFamily = Poppins,
+                                            fontFamily = font2,
                                             fontSize = 12.sp,
                                             color = Color(0, 0, 0)
                                         )
@@ -285,7 +285,7 @@ class Polupar_Courses : ComponentActivity() {
         TopAppBar(
             modifier = Modifier.Companion.padding(start = 10.dp, end = 10.dp),
             colors = TopAppBarDefaults.topAppBarColors(containerColor = Color(245, 249, 255)),
-            title = { Text("Popular ", fontFamily = Poppins, fontSize = 24.sp) },
+            title = { Text("Popular ", fontFamily = font2, fontSize = 24.sp) },
             navigationIcon = {
                 IconButton(onClick = { finish() }) {
                     Icon(

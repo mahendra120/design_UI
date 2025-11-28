@@ -28,12 +28,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
@@ -41,7 +39,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.designui.R
-import com.example.designui.ui.theme.Poppins
+import com.example.designui.ui.theme.font2
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -81,7 +79,7 @@ class SignUpWithGoogle : ComponentActivity() {
                     "Let's you in",
                     fontWeight = FontWeight.ExtraBold,
                     fontSize = 23.sp,
-                    fontFamily = Poppins
+                    fontFamily = font2
                 )
                 Row(
                     modifier = Modifier.padding(top = 40.dp, end = 5.dp),
@@ -102,7 +100,7 @@ class SignUpWithGoogle : ComponentActivity() {
                         Text(
                             "Continue with Google",
                             fontWeight = FontWeight.ExtraLight,
-                            fontFamily = Poppins,
+                            fontFamily = font2,
                             fontSize = 14.sp,
                             modifier = Modifier.padding(bottom = 13.dp)
                         )
@@ -125,7 +123,7 @@ class SignUpWithGoogle : ComponentActivity() {
                     Text(
                         "Continue with Apple",
                         fontWeight = FontWeight.ExtraLight,
-                        fontFamily = Poppins,
+                        fontFamily = font2,
                         fontSize = 14.sp,
                         modifier = Modifier.padding(top = 6.dp)
                     )
@@ -133,7 +131,7 @@ class SignUpWithGoogle : ComponentActivity() {
                 Spacer(modifier = Modifier.padding(15.dp))
                 Text(
                     "( Or )",
-                    fontFamily = Poppins,
+                    fontFamily = font2,
                     fontSize = 14.sp,
                     modifier = Modifier.fillMaxWidth(), textAlign = TextAlign.Center
                 )
@@ -162,7 +160,7 @@ class SignUpWithGoogle : ComponentActivity() {
                             style = SpanStyle(
                                 fontWeight = FontWeight.Bold,
                                 color = Color.Blue,
-                                fontFamily = Poppins,
+                                fontFamily = font2,
                                 textDecoration = TextDecoration.Underline
                             )
                         ) {

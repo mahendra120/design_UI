@@ -18,7 +18,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -49,7 +48,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.designui.MainActivity
 import com.example.designui.R
-import com.example.designui.ui.theme.Poppins
+import com.example.designui.ui.theme.font2
 import com.example.designui.ui.theme.pain
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -100,7 +99,7 @@ class UserSignUpPage : ComponentActivity() {
                 )
                 Text(
                     "Create an Account to Continue your allCourses",
-                    fontFamily = Poppins,
+                    fontFamily = font2,
                     color = Color.Black.copy(alpha = 0.5f),
                     fontSize = 15.sp,
                     modifier = Modifier
@@ -122,7 +121,7 @@ class UserSignUpPage : ComponentActivity() {
                                 Text(
                                     "Email",
                                     modifier = Modifier.padding(top = 5.dp),
-                                    fontFamily = Poppins, fontWeight = FontWeight.ExtraBold
+                                    fontFamily = font2, fontWeight = FontWeight.ExtraBold
                                 )
                             },
                             leadingIcon = {
@@ -152,7 +151,7 @@ class UserSignUpPage : ComponentActivity() {
                                 Text(
                                     "Password",
                                     modifier = Modifier.padding(top = 5.dp),
-                                    fontFamily = Poppins, fontWeight = FontWeight.ExtraBold
+                                    fontFamily = font2, fontWeight = FontWeight.ExtraBold
                                 )
                             },
                             leadingIcon = {
@@ -178,7 +177,7 @@ class UserSignUpPage : ComponentActivity() {
                 }
                 Text(
                     "Agree to Terms & Conditions",
-                    fontFamily = Poppins,
+                    fontFamily = font2,
                     fontWeight = FontWeight.Bold,
                     fontSize = 15.sp,
                     modifier = Modifier
@@ -207,7 +206,7 @@ class UserSignUpPage : ComponentActivity() {
                 Spacer(modifier = Modifier.padding(5.dp))
                 Text(
                     "Or Continue With",
-                    fontFamily = Poppins,
+                    fontFamily = font2,
                     color = Color.Black.copy(alpha = 1f),
                     fontSize = 15.sp,
                     modifier = Modifier
@@ -249,13 +248,13 @@ class UserSignUpPage : ComponentActivity() {
                                 style = SpanStyle(
                                     color = Color.Blue,
                                     fontWeight = FontWeight.Bold,
-                                    fontFamily = Poppins
+                                    fontFamily = font2
                                 )
                             ) {
                                 append("SIGN IN")
                             }
                         },
-                        fontFamily = Poppins,
+                        fontFamily = font2,
                         fontSize = 14.sp,
                         color = Color.Black.copy(alpha = .7f),
                         modifier = Modifier.fillMaxWidth(), textAlign = TextAlign.Center

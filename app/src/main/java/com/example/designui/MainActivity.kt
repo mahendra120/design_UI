@@ -1,24 +1,22 @@
 package com.example.designui
 
 import android.content.Intent
-import android.graphics.fonts.Font
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
@@ -27,18 +25,13 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Save
-import androidx.compose.material.icons.rounded.Close
-import androidx.compose.material.icons.rounded.Search
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.SearchBar
-import androidx.compose.material3.SearchBarDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
@@ -47,22 +40,17 @@ import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
-import com.example.designui.ui.theme.Poppins
+import com.example.designui.ui.theme.font2
 import com.example.designui.ui.theme.pain
 
 class MainActivity : ComponentActivity() {
@@ -136,7 +124,53 @@ class MainActivity : ComponentActivity() {
                             DisplayItem(selectedCategory, itemName)
                         }
                 }
-                mySearchBar()
+                Spacer(modifier = Modifier.padding(top = 10.dp))
+                Card(
+                    onClick = {
+                        val intent = Intent(this@MainActivity, Online_Courses::class.java)
+                        startActivity(intent)
+                    },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(60.dp)
+                        .padding(horizontal = 20.dp),
+                    elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
+                    colors = CardDefaults.cardColors(containerColor = Color(245, 249, 255))
+                )
+                {
+                    Row(modifier = Modifier.fillMaxWidth())
+                    {
+                        Box(modifier = Modifier.weight(.4f)) {
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxSize()
+                                    .padding(start = 10.dp),
+                                horizontalArrangement = Arrangement.SpaceEvenly,
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Image(
+                                    painter = painterResource(R.drawable.search_bar),
+                                    contentDescription = null, modifier = Modifier
+                                        .size(18.dp)
+                                )
+                                Spacer(modifier = Modifier.padding(start = 2.dp, end = 2.dp))
+                                Text("Search For..", fontSize = 17.sp, color = Color.Gray)
+                            }
+                        }
+                        Box(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(end = 20.dp)
+                                .weight(.6f),
+                            contentAlignment = Alignment.CenterEnd
+                        ) {
+                            Image(
+                                painter = painterResource(R.drawable.group_60),
+                                contentDescription = null, modifier = Modifier.size(30.dp)
+                            )
+                        }
+                    }
+                }
                 Image(
                     painter = painterResource(R.drawable.group54),
                     contentDescription = null,
@@ -153,7 +187,7 @@ class MainActivity : ComponentActivity() {
                 ) {
                     Text(
                         "Categories",
-                        fontFamily = Poppins,
+                        fontFamily = font2,
                         fontSize = 22.sp,
                         modifier = Modifier.padding(top = 14.dp)
                     )
@@ -161,7 +195,7 @@ class MainActivity : ComponentActivity() {
                         val intent = Intent(this@MainActivity, Categories::class.java)
                         startActivity(intent)
                     }) {
-                        Text("See All ", color = Color.Blue, fontFamily = Poppins)
+                        Text("See All ", color = Color.Blue, fontFamily = font2)
                     }
                 }
                 Row(
@@ -175,7 +209,7 @@ class MainActivity : ComponentActivity() {
                     }) {
                         Text(
                             "3D Design",
-                            fontFamily = Poppins,
+                            fontFamily = font2,
                             fontSize = 14.sp,
                             color = if (colorcheng == "3") Color.Blue else Color.Black.copy(.5f)
                         )
@@ -185,7 +219,7 @@ class MainActivity : ComponentActivity() {
                     }) {
                         Text(
                             "Arts & Humanities",
-                            fontFamily = Poppins,
+                            fontFamily = font2,
                             fontSize = 14.sp,
                             color = if (colorcheng == "A") Color.Blue else Color.Black.copy(.5f)
                         )
@@ -195,7 +229,7 @@ class MainActivity : ComponentActivity() {
                     }) {
                         Text(
                             "Graphic Design",
-                            fontFamily = Poppins,
+                            fontFamily = font2,
                             fontSize = 14.sp,
                             color = if (colorcheng == "G") Color.Blue else Color.Black.copy(.5f)
                         )
@@ -209,7 +243,7 @@ class MainActivity : ComponentActivity() {
                 ) {
                     Text(
                         "Polupar Courses",
-                        fontFamily = Poppins,
+                        fontFamily = font2,
                         fontSize = 19.sp,
                         modifier = Modifier.padding(top = 14.dp)
                     )
@@ -217,7 +251,7 @@ class MainActivity : ComponentActivity() {
                         val intent = Intent(this@MainActivity, Polupar_Courses::class.java)
                         startActivity(intent)
                     }, modifier = Modifier.padding(top = 4.dp)) {
-                        Text("See All ", color = Color.Blue, fontFamily = Poppins)
+                        Text("See All ", color = Color.Blue, fontFamily = font2)
                     }
                 }
                 LazyRow {
@@ -242,7 +276,7 @@ class MainActivity : ComponentActivity() {
                         ) {
                             Text(
                                 category,
-                                fontFamily = Poppins,
+                                fontFamily = font2,
                                 fontSize = 14.sp,
                                 color = if (selectedindex == index) Color(
                                     255, 255, 255
@@ -385,7 +419,7 @@ class MainActivity : ComponentActivity() {
                     Text(
                         "Top Mentor",
                         fontSize = 18.sp,
-                        fontFamily = Poppins,
+                        fontFamily = font2,
                         modifier = Modifier.padding(top = 15.dp, start = 5.dp)
                     )
                     TextButton(onClick = {
@@ -395,7 +429,7 @@ class MainActivity : ComponentActivity() {
                         Text(
                             "See All ",
                             fontSize = 14.sp,
-                            fontFamily = Poppins,
+                            fontFamily = font2,
                             color = Color.Blue,
                             modifier = Modifier.padding(
                                 top = 3.dp
@@ -433,7 +467,7 @@ class MainActivity : ComponentActivity() {
 
                             }
                             Spacer(modifier = Modifier.padding(top = 5.dp))
-                            Text("$name ", fontFamily = Poppins, fontSize = 17.sp)
+                            Text("$name ", fontFamily = font2, fontSize = 17.sp)
                         }
                     }
                 }
@@ -451,50 +485,50 @@ class MainActivity : ComponentActivity() {
         )
     }
 
-    @OptIn(ExperimentalMaterial3Api::class, ExperimentalGlideComposeApi::class)
-    @Composable
-    fun mySearchBar() {
-        var searchQuery by remember { mutableStateOf("") }
-        var active by remember { mutableStateOf(false) }
-        SearchBar(
-            query = searchQuery,
-            onQueryChange = { searchQuery = it },
-            onSearch = { active = false },
-            shape = RoundedCornerShape(12.dp),
-            active = active,
-            onActiveChange = { active = it },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 30.dp)
-                .border(1.dp, color = Color.Black.copy(.5f), shape = RoundedCornerShape(14.dp))
-                .shadow(elevation = 20.dp, shape = RoundedCornerShape(12.dp)),
-            windowInsets = WindowInsets(left = 0.dp, right = 0.dp, top = 0.dp, bottom = 0.dp),
-            placeholder = { Text("Search", fontFamily = Poppins, fontSize = 20.sp) },
-            leadingIcon = {
-                Icon(
-                    imageVector = Icons.Rounded.Search,
-                    contentDescription = null,
-                    tint = Color(0xFF4F46E5)
-                )
-            },
-            trailingIcon = {
-                if (active) IconButton(onClick = {
-                    searchQuery = ""
-                    active = false
-                }) {
-                    Icon(imageVector = Icons.Rounded.Close, contentDescription = null)
-                }
-            },
-            colors = SearchBarDefaults.colors(
-                containerColor = Color(245, 249, 255)
-            ),
-            tonalElevation = 0.dp,
-        ) {
-            LazyColumn {
-                item {
-
-                }
-            }
-        }
-    }
+//    @OptIn(ExperimentalMaterial3Api::class, ExperimentalGlideComposeApi::class)
+//    @Composable
+//    fun mySearchBar() {
+//        var searchQuery by remember { mutableStateOf("") }
+//        var active by remember { mutableStateOf(false) }
+//        SearchBar(
+//            query = searchQuery,
+//            onQueryChange = { searchQuery = it },
+//            onSearch = { active = false },
+//            shape = RoundedCornerShape(12.dp),
+//            active = active,
+//            onActiveChange = { active = it },
+//            modifier = Modifier
+//                .fillMaxWidth()
+//                .padding(horizontal = 30.dp)
+//                .border(1.dp, color = Color.Black.copy(.5f), shape = RoundedCornerShape(14.dp))
+//                .shadow(elevation = 20.dp, shape = RoundedCornerShape(12.dp)),
+//            windowInsets = WindowInsets(left = 0.dp, right = 0.dp, top = 0.dp, bottom = 0.dp),
+//            placeholder = { Text("Search", fontFamily = Poppins, fontSize = 20.sp) },
+//            leadingIcon = {
+//                Icon(
+//                    imageVector = Icons.Rounded.Search,
+//                    contentDescription = null,
+//                    tint = Color(0xFF4F46E5)
+//                )
+//            },
+//            trailingIcon = {
+//                if (active) IconButton(onClick = {
+//                    searchQuery = ""
+//                    active = false
+//                }) {
+//                    Icon(imageVector = Icons.Rounded.Close, contentDescription = null)
+//                }
+//            },
+//            colors = SearchBarDefaults.colors(
+//                containerColor = Color(245, 249, 255)
+//            ),
+//            tonalElevation = 0.dp,
+//        ) {
+//            LazyColumn {
+//                item {
+//
+//                }
+//            }
+//        }
+//    }
 }

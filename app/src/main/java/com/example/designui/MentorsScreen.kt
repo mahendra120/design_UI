@@ -1,7 +1,6 @@
 package com.example.designui
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -47,7 +46,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.designui.ui.theme.Poppins
+import com.example.designui.ui.theme.font2
 import com.example.designui.ui.theme.pain
 
 class MentorsScreen : ComponentActivity() {
@@ -135,7 +134,7 @@ class MentorsScreen : ComponentActivity() {
                                 Text(
                                     " $name",
                                     fontSize = 22.sp,
-                                    fontFamily = Poppins,
+                                    fontFamily = font2,
                                     fontWeight = FontWeight.ExtraBold
                                 )
                                 Text(
@@ -162,7 +161,7 @@ class MentorsScreen : ComponentActivity() {
     @Composable
     fun Topbar() {
         TopAppBar(
-            title = { Text("Top Mentors", fontFamily = Poppins, fontSize = 24.sp) },
+            title = { Text("Top Mentors", fontFamily = font2, fontSize = 24.sp) },
             modifier = Modifier.padding(start = 10.dp, end = 10.dp),
             colors = TopAppBarDefaults.topAppBarColors(containerColor = Color(245, 249, 255)),
             navigationIcon = {

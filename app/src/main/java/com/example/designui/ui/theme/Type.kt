@@ -8,7 +8,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.example.designui.R
 
-val Poppins = FontFamily(
+val font2 = FontFamily(
     Font(R.font.textfont)
 )
 val pain = FontFamily(

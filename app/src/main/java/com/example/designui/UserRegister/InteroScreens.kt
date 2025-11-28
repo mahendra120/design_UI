@@ -35,7 +35,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.designui.R
-import com.example.designui.ui.theme.Poppins
+import com.example.designui.ui.theme.font2
 
 class InteroScreens : ComponentActivity() {
     var screenNumber by mutableStateOf("1")
@@ -75,7 +75,7 @@ class InteroScreens : ComponentActivity() {
                     text = "Online Learning",
                     fontSize = 26.sp,
                     fontWeight = FontWeight.ExtraBold,
-                    fontFamily = Poppins,
+                    fontFamily = font2,
                     modifier = Modifier.fillMaxWidth(),
                     textAlign = TextAlign.Center
                 )
@@ -83,7 +83,7 @@ class InteroScreens : ComponentActivity() {
                 Text(
                     text = "We Provide Classes Online Classes and Pre Recorded Leactures.!",
                     fontSize = 14.sp,
-                    fontFamily = Poppins,
+                    fontFamily = font2,
                     color = Color.Black.copy(.7f),
                     fontWeight = FontWeight.ExtraLight,
                     modifier = Modifier.fillMaxWidth().padding(10.dp),
@@ -129,7 +129,7 @@ class InteroScreens : ComponentActivity() {
                     text = "Learn from Anytime",
                     fontSize = 29.sp,
                     fontWeight = FontWeight.ExtraBold,
-                    fontFamily = Poppins,
+                    fontFamily = font2,
                     modifier = Modifier.fillMaxWidth(),
                     textAlign = TextAlign.Center
                 )
@@ -137,7 +137,7 @@ class InteroScreens : ComponentActivity() {
                 Text(
                     text = "Booked or Same the Lectures for Future",
                     fontSize = 13.sp,
-                    fontFamily = Poppins,
+                    fontFamily = font2,
                     fontWeight = FontWeight.ExtraLight,
                     color = Color.Black.copy(.7f),
                     modifier = Modifier.fillMaxWidth(),
@@ -181,7 +181,7 @@ class InteroScreens : ComponentActivity() {
                     text = "Get Online Certificate",
                     fontSize = 24.sp,
                     fontWeight = FontWeight.ExtraBold,
-                    fontFamily = Poppins,
+                    fontFamily = font2,
                     modifier = Modifier.fillMaxWidth(),
                     textAlign = TextAlign.Center
                 )
@@ -189,7 +189,7 @@ class InteroScreens : ComponentActivity() {
                 Text(
                     text = "Analyse your scores and Track your results",
                     fontSize = 14.sp,
-                    fontFamily = Poppins,
+                    fontFamily = font2,
                     fontWeight = FontWeight.ExtraLight,
                     modifier = Modifier.fillMaxWidth(),
                     textAlign = TextAlign.Center
