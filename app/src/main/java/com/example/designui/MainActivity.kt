@@ -24,6 +24,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.NotificationsActive
 import androidx.compose.material.icons.filled.Save
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -292,7 +293,13 @@ class MainActivity : ComponentActivity() {
                         val selectedItem = name.item
                         if (index < 5) {
                             Card(
-                                onClick = {},
+                                onClick = {
+                                    val intent =
+                                        Intent(this@MainActivity, Courses_Detalis::class.java)
+                                    intent.putExtra("category", name.category)
+                                    intent.putExtra("item", name.item)
+                                    startActivity(intent)
+                                },
                                 modifier = Modifier
                                     .height(230.dp)
                                     .width(280.dp)
@@ -479,9 +486,32 @@ class MainActivity : ComponentActivity() {
     @Composable
     fun Topbar(scrollBehavior: TopAppBarScrollBehavior) {
         TopAppBar(
-            title = { Text("HI") },
+            title = {
+                Column(modifier = Modifier.fillMaxWidth()) {
+                    Text(
+                        "Hi, Ronald A. Martin",
+                        fontFamily = font2,
+                        fontWeight = FontWeight.Bold, fontSize = 25.sp
+                    )
+                    Text(
+                        "What Would you like to learn Today? Search Below.",
+                        fontSize = 15.sp,
+                        color = Color(54, 54, 54)
+                    )
+                }
+            },
             colors = TopAppBarDefaults.topAppBarColors(Color(245, 249, 255)),
             scrollBehavior = scrollBehavior,
+            actions = {
+                Box(modifier = Modifier.size(70.dp)) {
+                    Icon(
+                        painter = painterResource(R.drawable.group_81),
+                        contentDescription = null,
+                        tint = Color(22, 127, 113),
+                        modifier = Modifier.size(35.dp)
+                    )
+                }
+            }
         )
     }
 

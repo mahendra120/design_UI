@@ -9,4 +9,5 @@
     <string name="title_activity_polupar_courses">Polupar_Courses</string>
     <string name="title_activity_mentors_screen">MentorsScreen</string>
     <string name="title_activity_online_courses">Online_Courses</string>
+    <string name="title_activity_courses_detalis">Courses_Detalis</string>
 </resources>

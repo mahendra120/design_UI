@@ -214,7 +214,6 @@ class MentorsScreen : ComponentActivity() {
                     ) {
                         IconButton(onClick = {
                             selectedIndex = index
-
                         }) {
                             Image(
                                 painter = painterResource(image),

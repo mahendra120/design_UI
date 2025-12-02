@@ -15,6 +15,10 @@ val pain = FontFamily(
     Font(R.font.jost_light)
 )
 
+val font1 = FontFamily(
+    Font(R.font.jost_medium)
+)
+
 // Set of Material typography styles to start with
 val Typography = Typography(
     bodyLarge = TextStyle(

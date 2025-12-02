@@ -1,5 +1,6 @@
 package com.example.designui
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -52,6 +53,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.designui.ui.theme.font2
 import com.example.designui.ui.theme.pain
+
 class Polupar_Courses : ComponentActivity() {
     var selectedCategory by mutableStateOf("All")
     var selectedindex by mutableStateOf(0)
@@ -76,6 +78,7 @@ class Polupar_Courses : ComponentActivity() {
             }
         }
     }
+
     @Composable
     @Preview(showBackground = true)
     fun UI() {
@@ -146,7 +149,10 @@ class Polupar_Courses : ComponentActivity() {
                 items(showList) {
                     val items = it
                     Card(
-                        onClick = {},
+                        onClick = {
+                            val intent = Intent(this@Polupar_Courses, Courses_Detalis::class.java)
+                            startActivity(intent)
+                        },
                         modifier = Modifier.Companion
                             .fillMaxWidth()
                             .height(160.dp)
@@ -205,12 +211,11 @@ class Polupar_Courses : ComponentActivity() {
                                         )
                                         Text(
                                             "$42",
-                                            fontSize = 17.sp,
+                                            fontSize = 16.sp,
                                             color = Color.Companion.Gray,
                                             fontWeight = FontWeight.Companion.ExtraBold,
                                             fontFamily = font2,
                                             textDecoration = TextDecoration.Companion.LineThrough,
-                                            modifier = Modifier.Companion.padding(top = 1.dp)
                                         )
                                     }
                                     Spacer(modifier = Modifier.Companion.padding(6.dp))
@@ -243,6 +248,7 @@ class Polupar_Courses : ComponentActivity() {
         "PROFILE" to R.drawable.group_58,
         "MY COURSES" to R.drawable.group_59
     )
+
     @Composable
     fun BottomBar() {
         BottomAppBar {
@@ -279,6 +285,7 @@ class Polupar_Courses : ComponentActivity() {
             }
         }
     }
+
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     fun Topbar() {
