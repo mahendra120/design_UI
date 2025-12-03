@@ -491,7 +491,7 @@ class MainActivity : ComponentActivity() {
                     Text(
                         "Hi, Ronald A. Martin",
                         fontFamily = font2,
-                        fontWeight = FontWeight.Bold, fontSize = 25.sp
+                        fontWeight = FontWeight.Bold, fontSize = 23.sp
                     )
                     Text(
                         "What Would you like to learn Today? Search Below.",

@@ -378,7 +378,6 @@ class Courses_Detalis : ComponentActivity() {
             val star: String,
             var comment: String,
         )
-
         val reviews = listOf(
             Reviews(
                 R.drawable.kakashi_hatake,
