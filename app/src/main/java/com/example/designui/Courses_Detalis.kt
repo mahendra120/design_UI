@@ -245,7 +245,7 @@ class Courses_Detalis : ComponentActivity() {
     @Composable
     fun Cardabout() {
         Text(
-            "Graphic Design now a popular profession graphic design by off your carrer about tantas regiones barbarorum pedibus obiit",
+            "Graphic Design now a popular profession graphic design by off your career about tantras regiones barbarous pedibus obiit",
             fontFamily = font1,
             fontSize = 15.sp,
             color = Color(160, 164, 171),
@@ -611,6 +611,7 @@ class Courses_Detalis : ComponentActivity() {
         }
         Mybottombar()
     }
+
     @Composable
     fun Mybottombar() {
         IconButton(
