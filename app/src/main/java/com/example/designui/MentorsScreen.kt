@@ -1,5 +1,6 @@
 package com.example.designui
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -7,6 +8,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -24,6 +26,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -85,63 +88,77 @@ class MentorsScreen : ComponentActivity() {
             )
 
             val mentorslist = listOf(
+                Mentor(R.drawable.kakashi_hatake, "kakashi  Hatake", "ninjutsu sensei"),
                 Mentor(R.drawable.mentors, "William K. Olivas", "3D Design"),
                 Mentor(R.drawable.mentors, "Donald S. Channel", "Arts & Humanities"),
                 Mentor(R.drawable.mentors, "Elvira E. Limones", "personal Development"),
                 Mentor(R.drawable.mentors, "Scott S, Simpson", "SEC & Marketing"),
                 Mentor(R.drawable.mentors, "Patricia G. peters", "office Productivity"),
                 Mentor(R.drawable.mentors, "Carmen P. Mercado", "Web Developer"),
-                Mentor(R.drawable.kakashi_hatake, "kakashi  Hatake", "ninjutsu sensei"),
             )
             LazyColumn(modifier = Modifier.fillMaxSize()) {
                 items(mentorslist) { item ->
                     val image = item.image
                     val name = item.name
                     val work = item.work
-                    Row(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(10.dp)
-                    ) {
-                        Box(
+                    Card(
+                        onClick = {
+                            val intent = Intent(this@MentorsScreen, Mentorsprofile::class.java)
+                            intent.putExtra("image",image.toString())
+                            intent.putExtra("name",name)
+                            intent.putExtra("work",work)
+                            startActivity(intent)
+                        },
+                        modifier = Modifier.fillMaxWidth(),
+                        colors = CardDefaults.cardColors(containerColor = Color.Transparent)
+                    )
+                    {
+                        Row(
                             modifier = Modifier
-                                .weight(.3f)
-                                .height(120.dp)
+                                .fillMaxSize()
+                                .padding(10.dp)
                         ) {
-                            Card(
+                            Box(
                                 modifier = Modifier
-                                    .fillMaxSize()
-                                    .padding(20.dp),
-                                border = BorderStroke(.5.dp, color = Color(0, 0, 0)),
-                                shape = RoundedCornerShape(120.dp),
+                                    .weight(.3f)
+                                    .height(120.dp)
+
                             ) {
-                                Image(
-                                    painter = painterResource(image),
-                                    contentDescription = null, contentScale = ContentScale.Crop
-                                )
+                                Card(
+                                    modifier = Modifier
+                                        .fillMaxSize()
+                                        .padding(20.dp),
+                                    border = BorderStroke(.5.dp, color = Color(0, 0, 0)),
+                                    shape = RoundedCornerShape(120.dp),
+                                ) {
+                                    Image(
+                                        painter = painterResource(image),
+                                        contentDescription = null, contentScale = ContentScale.Crop
+                                    )
+                                }
                             }
-                        }
-                        Box(
-                            modifier = Modifier
-                                .weight(.7f)
-                                .height(120.dp)
-                        ) {
-                            Column(
+                            Box(
                                 modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(top = 30.dp)
+                                    .weight(.7f)
+                                    .height(120.dp)
                             ) {
-                                Text(
-                                    " $name",
-                                    fontSize = 22.sp,
-                                    fontFamily = font2,
-                                    fontWeight = FontWeight.ExtraBold
-                                )
-                                Text(
-                                    " $work", fontSize = 17.sp,
-                                    fontFamily = pain,
-                                    fontWeight = FontWeight.ExtraBold
-                                )
+                                Column(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(top = 30.dp)
+                                ) {
+                                    Text(
+                                        " $name",
+                                        fontSize = 22.sp,
+                                        fontFamily = font2,
+                                        fontWeight = FontWeight.ExtraBold
+                                    )
+                                    Text(
+                                        " $work", fontSize = 17.sp,
+                                        fontFamily = pain,
+                                        fontWeight = FontWeight.ExtraBold
+                                    )
+                                }
                             }
                         }
                     }
@@ -155,6 +172,7 @@ class MentorsScreen : ComponentActivity() {
                 }
             }
         }
+
     }
 
     @OptIn(ExperimentalMaterial3Api::class)

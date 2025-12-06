@@ -48,6 +48,7 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -145,7 +146,8 @@ class Polupar_Courses : ComponentActivity() {
                 modifier = Modifier.Companion
                     .fillMaxSize()
                     .padding(start = 5.dp)
-            ) {
+            )
+            {
                 items(showList) {
                     val items = it
                     Card(
@@ -192,6 +194,8 @@ class Polupar_Courses : ComponentActivity() {
                                         text = items.item,
                                         fontFamily = font2,
                                         fontSize = 16.sp,
+                                        maxLines = 1,
+                                        overflow = TextOverflow.Ellipsis,
                                         color = Color.Companion.Black
                                     )
                                     Spacer(modifier = Modifier.Companion.padding(5.dp))

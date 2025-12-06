@@ -12,6 +12,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DesignUI">
         <activity
+            android:name=".Mentorsprofile"
+            android:exported="false"
+            android:label="@string/title_activity_mentorsprofile"
+            android:theme="@style/Theme.DesignUI" />
+        <activity
+            android:name=".Notifications"
+            android:exported="false"
+            android:label="@string/title_activity_notifications"
+            android:theme="@style/Theme.DesignUI" />
+        <activity
+            android:name=".UserFavoritePage"
+            android:exported="false"
+            android:label="@string/title_activity_user_favorite_page"
+            android:theme="@style/Theme.DesignUI" />
+        <activity
             android:name=".Online_Courses"
             android:exported="false"
             android:label="@string/title_activity_courses_detalis"

@@ -106,7 +106,7 @@ class Categories : ComponentActivity() {
                             painter = painterResource(image),
                             contentDescription = null,
                             modifier = Modifier
-                                .height(140.dp)
+                                .height(130.dp)
                                 .padding(15.dp)
                         )
                     }

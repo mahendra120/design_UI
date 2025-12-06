@@ -7,6 +7,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -24,6 +25,9 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Bookmark
+import androidx.compose.material.icons.filled.BookmarkBorder
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.NotificationsActive
 import androidx.compose.material.icons.filled.Save
 import androidx.compose.material3.Button
@@ -32,6 +36,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -41,10 +46,12 @@ import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -84,6 +91,7 @@ class MainActivity : ComponentActivity() {
     @Composable
     @Preview(showBackground = true)
     fun HomePage() {
+        var bookmark by remember { mutableStateOf(false) }
         LazyColumn {
             item {
                 data class CourseCategory(
@@ -255,7 +263,11 @@ class MainActivity : ComponentActivity() {
                         Text("See All ", color = Color.Blue, fontFamily = font2)
                     }
                 }
-                LazyRow {
+                LazyRow(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 5.dp)
+                ) {
                     itemsIndexed(
                         listOf(
                             "All", "3D Design", "Arts & Humanities", "Graphic Design"
@@ -331,34 +343,52 @@ class MainActivity : ComponentActivity() {
                                             Row(
                                                 modifier = Modifier
                                                     .fillMaxWidth()
-                                                    .padding(horizontal = 10.dp, vertical = 5.dp),
+                                                    .padding(horizontal = 5.dp, vertical = 0.dp),
                                                 horizontalArrangement = Arrangement.SpaceBetween
                                             ) {
                                                 Text(
-                                                    "$selectedCategory",
+                                                    selectedCategory,
                                                     fontSize = 15.sp,
                                                     color = Color(255, 107, 0),
                                                     modifier = Modifier.padding(
-                                                        start = 10.dp,
-                                                        top = 5.dp
+                                                        start = 9.dp,
+                                                        top = 17.dp
                                                     )
                                                 )
-                                                Icon(Icons.Default.Save, contentDescription = null)
+                                                IconButton(onClick = {
+                                                    bookmark = !bookmark
+                                                })
+                                                {
+                                                    if (bookmark) {
+                                                        Icon(
+                                                            Icons.Default.Bookmark,
+                                                            contentDescription = null,
+                                                            tint = Color(22, 127, 113)
+                                                        )
+                                                    } else {
+                                                        Icon(
+                                                            Icons.Default.BookmarkBorder,
+                                                            contentDescription = null,
+                                                            tint = Color(22, 127, 113)
+                                                        )
+                                                    }
+                                                }
                                             }
                                             Text(
-                                                "$selectedItem",
+                                                selectedItem,
                                                 fontSize = 18.sp,
                                                 modifier = Modifier
                                                     .fillMaxWidth()
-                                                    .padding(top = 7.dp, start = 10.dp),
-                                                textAlign = TextAlign.Start
+                                                    .padding(start = 10.dp),
+                                                textAlign = TextAlign.Start,
+                                                fontWeight = FontWeight.Bold
                                             )
                                             Row(
                                                 modifier = Modifier
-                                                    .padding(start = 10.dp, top = 10.dp)
+                                                    .padding(start = 10.dp, top = 5.dp)
                                                     .fillMaxWidth()
                                                     .height(30.dp),
-                                                horizontalArrangement = Arrangement.Absolute.Center
+                                                horizontalArrangement = Arrangement.Start
                                             ) {
                                                 Text(
                                                     "$28  ",
@@ -444,34 +474,54 @@ class MainActivity : ComponentActivity() {
                         )
                     }
                 }
+                data class mentors(
+                    val name: String,
+                    val image: Int
+                )
+
+                val metorlist = listOf(
+                    mentors("Sonja", R.drawable.mentors),
+                    mentors("jesen", R.drawable.mentors),
+                    mentors("victori", R.drawable.mentors),
+                    mentors("Castaldo", R.drawable.mentors),
+                    mentors("kakshi hatake", R.drawable.kakashi_hatake),
+                    mentors("madara uchiha", R.drawable.madara_uchiha)
+                )
                 LazyRow(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(top = 5.dp)
-                )
-                {
+                ) {
                     items(
-                        listOf(
-                            "Sonja",
-                            "jesen",
-                            "victori",
-                            "Castaldo",
-                            "madara uchiha"
-                        )
-                    ) { name ->
+                        metorlist
+                    ) {
+                        val name = it.name
+                        val image = it.image
                         Column(
                             modifier = Modifier.fillMaxWidth(),
                             horizontalAlignment = Alignment.CenterHorizontally,
                             verticalArrangement = Arrangement.SpaceBetween
                         ) {
                             Card(
+                                onClick = {
+                                    val intent =
+                                        Intent(this@MainActivity, Mentorsprofile::class.java)
+                                    intent.putExtra("image", image.toString())
+                                    intent.putExtra("name", name)
+                                    startActivity(intent)
+                                },
                                 modifier = Modifier
                                     .height(120.dp)
                                     .width(150.dp)
                                     .padding(10.dp)
                             )
                             {
-
+                                Image(
+                                    painter = painterResource(image),
+                                    contentDescription = null,
+                                    modifier = Modifier.fillMaxSize(),
+                                    contentScale = ContentScale.Crop
+                                )
                             }
                             Spacer(modifier = Modifier.padding(top = 5.dp))
                             Text("$name ", fontFamily = font2, fontSize = 17.sp)
@@ -503,12 +553,21 @@ class MainActivity : ComponentActivity() {
             colors = TopAppBarDefaults.topAppBarColors(Color(245, 249, 255)),
             scrollBehavior = scrollBehavior,
             actions = {
-                Box(modifier = Modifier.size(70.dp)) {
+                Box(
+                    modifier = Modifier
+                        .size(50.dp)
+                        .padding(start = 10.dp)
+                ) {
                     Icon(
                         painter = painterResource(R.drawable.group_81),
                         contentDescription = null,
                         tint = Color(22, 127, 113),
-                        modifier = Modifier.size(35.dp)
+                        modifier = Modifier
+                            .size(35.dp)
+                            .clickable {
+                                val intent = Intent(this@MainActivity, Notifications::class.java)
+                                startActivity(intent)
+                            }
                     )
                 }
             }
