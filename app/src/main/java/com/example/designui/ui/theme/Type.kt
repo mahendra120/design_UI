@@ -19,6 +19,11 @@ val font1 = FontFamily(
     Font(R.font.jost_medium)
 )
 
+val font3 = FontFamily(
+    Font(R.font.jost_regular)
+)
+
+
 // Set of Material typography styles to start with
 val Typography = Typography(
     bodyLarge = TextStyle(

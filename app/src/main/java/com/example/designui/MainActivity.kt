@@ -339,75 +339,76 @@ class MainActivity : ComponentActivity() {
                                             .weight(.5f)
                                             .background(Color.White)
                                     ) {
-                                        Column {
+                                        Column(
+                                            modifier = Modifier.fillMaxWidth(),
+                                            horizontalAlignment = Alignment.CenterHorizontally,
+                                            verticalArrangement = Arrangement.SpaceAround
+                                        ) {
                                             Row(
                                                 modifier = Modifier
                                                     .fillMaxWidth()
-                                                    .padding(horizontal = 5.dp, vertical = 0.dp),
-                                                horizontalArrangement = Arrangement.SpaceBetween
+                                                    .padding(horizontal = 5.dp),
+                                                horizontalArrangement = Arrangement.SpaceBetween,
+                                                verticalAlignment = Alignment.CenterVertically
                                             ) {
+
                                                 Text(
-                                                    selectedCategory,
+                                                    text = selectedCategory,
                                                     fontSize = 15.sp,
                                                     color = Color(255, 107, 0),
                                                     modifier = Modifier.padding(
                                                         start = 9.dp,
-                                                        top = 17.dp
+                                                        top = 10.dp
                                                     )
                                                 )
-                                                IconButton(onClick = {
-                                                    bookmark = !bookmark
-                                                })
-                                                {
-                                                    if (bookmark) {
-                                                        Icon(
-                                                            Icons.Default.Bookmark,
-                                                            contentDescription = null,
-                                                            tint = Color(22, 127, 113)
-                                                        )
-                                                    } else {
-                                                        Icon(
-                                                            Icons.Default.BookmarkBorder,
-                                                            contentDescription = null,
-                                                            tint = Color(22, 127, 113)
-                                                        )
-                                                    }
+                                                IconButton(
+                                                    onClick = { bookmark = !bookmark },
+                                                    modifier = Modifier.size(25.dp)
+                                                ) {
+                                                    Icon(
+                                                        imageVector = if (bookmark) Icons.Default.Bookmark else Icons.Default.BookmarkBorder,
+                                                        contentDescription = null,
+                                                        tint = Color(22, 127, 113)
+                                                    )
                                                 }
                                             }
                                             Text(
-                                                selectedItem,
+                                                text = selectedItem,
                                                 fontSize = 18.sp,
                                                 modifier = Modifier
                                                     .fillMaxWidth()
-                                                    .padding(start = 10.dp),
+                                                    .padding(start = 10.dp, top = 5.dp),
                                                 textAlign = TextAlign.Start,
                                                 fontWeight = FontWeight.Bold
                                             )
                                             Row(
                                                 modifier = Modifier
-                                                    .padding(start = 10.dp, top = 5.dp)
                                                     .fillMaxWidth()
+                                                    .padding(start = 10.dp, top = 5.dp)
                                                     .height(30.dp),
-                                                horizontalArrangement = Arrangement.Start
+                                                horizontalArrangement = Arrangement.Start,
+                                                verticalAlignment = Alignment.CenterVertically
                                             ) {
                                                 Text(
-                                                    "$28  ",
+                                                    text = "$28",
                                                     fontSize = 15.sp,
                                                     color = Color(9, 97, 245)
                                                 )
                                                 Text(
-                                                    "|  ⭐4.8  |  ",
+                                                    text = "  |  ⭐4.8  |  ",
                                                     fontSize = 15.sp,
                                                     color = Color.Black
                                                 )
+
                                                 Text(
-                                                    "|  1100std  ",
+                                                    text = "1100 std",
                                                     fontSize = 15.sp,
                                                     color = Color.Black
                                                 )
                                             }
                                         }
                                     }
+
                                 }
                             }
                         } else {
@@ -476,16 +477,17 @@ class MainActivity : ComponentActivity() {
                 }
                 data class mentors(
                     val name: String,
-                    val image: Int
+                    val image: Int,
+                    val work: String,
                 )
 
                 val metorlist = listOf(
-                    mentors("Sonja", R.drawable.mentors),
-                    mentors("jesen", R.drawable.mentors),
-                    mentors("victori", R.drawable.mentors),
-                    mentors("Castaldo", R.drawable.mentors),
-                    mentors("kakshi hatake", R.drawable.kakashi_hatake),
-                    mentors("madara uchiha", R.drawable.madara_uchiha)
+                    mentors("kakshi hatake", R.drawable.kakashi_hatake, "ninjutsu sensei"),
+                    mentors("madara uchiha", R.drawable.madara_uchiha, "genjutsu sensei"),
+                    mentors("Sonja", R.drawable.mentors, "3D Design"),
+                    mentors("jesen", R.drawable.mentors, "3D Design"),
+                    mentors("victori", R.drawable.mentors, "3D Design"),
+                    mentors("Castaldo", R.drawable.mentors, "3D Design"),
                 )
                 LazyRow(
                     modifier = Modifier
@@ -497,6 +499,7 @@ class MainActivity : ComponentActivity() {
                     ) {
                         val name = it.name
                         val image = it.image
+                        val work = it.work
                         Column(
                             modifier = Modifier.fillMaxWidth(),
                             horizontalAlignment = Alignment.CenterHorizontally,
@@ -508,6 +511,7 @@ class MainActivity : ComponentActivity() {
                                         Intent(this@MainActivity, Mentorsprofile::class.java)
                                     intent.putExtra("image", image.toString())
                                     intent.putExtra("name", name)
+                                    intent.putExtra("work", work)
                                     startActivity(intent)
                                 },
                                 modifier = Modifier
@@ -573,7 +577,6 @@ class MainActivity : ComponentActivity() {
             }
         )
     }
-
 //    @OptIn(ExperimentalMaterial3Api::class, ExperimentalGlideComposeApi::class)
 //    @Composable
 //    fun mySearchBar() {

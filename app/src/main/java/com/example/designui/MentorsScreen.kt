@@ -89,6 +89,7 @@ class MentorsScreen : ComponentActivity() {
 
             val mentorslist = listOf(
                 Mentor(R.drawable.kakashi_hatake, "kakashi  Hatake", "ninjutsu sensei"),
+                Mentor(R.drawable.madara_uchiha, "madara uchiha", "genjutsu sensei"),
                 Mentor(R.drawable.mentors, "William K. Olivas", "3D Design"),
                 Mentor(R.drawable.mentors, "Donald S. Channel", "Arts & Humanities"),
                 Mentor(R.drawable.mentors, "Elvira E. Limones", "personal Development"),
@@ -104,9 +105,9 @@ class MentorsScreen : ComponentActivity() {
                     Card(
                         onClick = {
                             val intent = Intent(this@MentorsScreen, Mentorsprofile::class.java)
-                            intent.putExtra("image",image.toString())
-                            intent.putExtra("name",name)
-                            intent.putExtra("work",work)
+                            intent.putExtra("image", image.toString())
+                            intent.putExtra("name", name)
+                            intent.putExtra("work", work)
                             startActivity(intent)
                         },
                         modifier = Modifier.fillMaxWidth(),
@@ -133,6 +134,7 @@ class MentorsScreen : ComponentActivity() {
                                 ) {
                                     Image(
                                         painter = painterResource(image),
+                                        modifier = Modifier.fillMaxSize(),
                                         contentDescription = null, contentScale = ContentScale.Crop
                                     )
                                 }

@@ -83,7 +83,8 @@ class Courses_Detalis : ComponentActivity() {
                             .fillMaxSize()
                             .height(300.dp),
                         colors = CardDefaults.cardColors(containerColor = Color.Black),
-                    ) {
+                    )
+                    {
                         IconButton(
                             onClick = { finish() }, colors = IconButtonDefaults.iconButtonColors(
                                 contentColor = Color(
@@ -129,7 +130,8 @@ class Courses_Detalis : ComponentActivity() {
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(top = 10.dp, start = 10.dp),
-                        ) {
+                        )
+                        {
                             Box(
                                 Modifier.weight(.7f)
                             ) {
@@ -177,7 +179,8 @@ class Courses_Detalis : ComponentActivity() {
                                 .fillMaxWidth()
                                 .padding(top = 15.dp)
                                 .height(60.dp)
-                        ) {
+                        )
+                        {
                             Button(
                                 onClick = {
                                     selectegcolorBotton = "1"
