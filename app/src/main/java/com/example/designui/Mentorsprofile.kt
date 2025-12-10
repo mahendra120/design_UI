@@ -17,6 +17,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -24,7 +26,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.FloatingActionButtonDefaults.elevation
+import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
@@ -42,6 +44,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -273,7 +276,7 @@ class Mentorsprofile : ComponentActivity() {
                                 )
                             ) {
                                 Text(
-                                    "About",
+                                    "Courses",
                                     fontSize = 19.sp,
                                     fontFamily = font1,
                                     color = Color(0, 0, 0),
@@ -297,7 +300,7 @@ class Mentorsprofile : ComponentActivity() {
                             )
                             {
                                 Text(
-                                    "Curriculcum",
+                                    "Ratings",
                                     fontSize = 19.sp,
                                     fontFamily = font1,
                                     color = Color(0, 0, 0),
@@ -305,7 +308,11 @@ class Mentorsprofile : ComponentActivity() {
                                 )
                             }
                         }
-
+                        if (selectegcolorBotton == "1") {
+                            couses()
+                        } else {
+                            Ratings()
+                        }
                     }
                 }
             }
@@ -314,7 +321,139 @@ class Mentorsprofile : ComponentActivity() {
 
     @Composable
     fun couses() {
+        data class CourseCategory(
+            val category: String,
+            val name: String,
+            val fackprice: String,
+            val price: String,
+            var rating: String,
+            var students: String
+        )
 
+        val allList = listOf(
+            CourseCategory("3D Design", "Graphic Design Advanced", "42", "29", "4.8", "7830"),
+            CourseCategory("3D Design", "Graphic Design Advanced", "42", "29", "4.8", "7830"),
+            CourseCategory("3D Design", "Graphic Design Advanced", "42", "29", "4.8", "7830"),
+            CourseCategory("3D Design", "Graphic Design Advanced", "42", "29", "4.8", "7830")
+        )
+
+        Box(modifier = Modifier.fillMaxSize()) {
+            LazyColumn(
+                modifier = Modifier.fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                items(allList) {
+                    val category: String = it.category
+                    val name: String = it.name
+                    val price: String = it.price
+                    val rating: String = it.rating
+                    val students: String = it.students
+                    val fackprice: String = it.fackprice
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(5.dp)
+                            .background(Color.Transparent)
+                    ) {
+                        Row(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(start = 3.dp)
+                        ) {
+                            Card(
+                                modifier = Modifier
+                                    .padding(5.dp)
+                                    .weight(.3f)
+                                    .height(90.dp),
+                                colors = CardDefaults.cardColors(containerColor = Color(0, 0, 0))
+                            )
+                            {
+
+                            }
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxSize()
+                                    .weight(.7f)
+                            ) {
+                                Column(
+                                    modifier = Modifier.fillMaxSize(),
+                                    horizontalAlignment = Alignment.Start
+                                ) {
+                                    Spacer(
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .padding(top = 12.dp)
+                                    )
+                                    Text(
+                                        "$category ",
+                                        color = Color(255, 107, 0),
+                                        modifier = Modifier.padding(start = 4.dp)
+                                    )
+                                    Spacer(modifier = Modifier.padding(top = 5.dp))
+                                    Text(
+                                        "$name ",
+                                        color = Color.Black,
+                                        fontSize = 18.sp,
+                                        fontWeight = FontWeight.Bold,
+                                        maxLines = 1,
+                                        fontFamily = font2
+                                    )
+                                    Spacer(modifier = Modifier.padding(top = 5.dp))
+                                    Row(
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .padding(start = 5.dp),
+                                        verticalAlignment = Alignment.CenterVertically
+                                    )
+                                    {
+                                        Text(
+                                            "$price", fontSize = 19.sp,
+                                            color = Color.Blue,
+                                            fontWeight = FontWeight.ExtraBold,
+                                            fontFamily = font2,
+                                            modifier = Modifier.padding(end = 8.dp)
+                                        )
+                                        Text(
+                                            "$fackprice",
+                                            fontSize = 16.sp,
+                                            color = Color.Gray,
+                                            fontWeight = FontWeight.ExtraBold,
+                                            fontFamily = font2,
+                                            textDecoration = TextDecoration.LineThrough,
+                                        )
+                                    }
+                                    Spacer(modifier = Modifier.padding(top = 5.dp))
+                                    Row(
+                                        modifier = Modifier
+                                            .fillMaxWidth().padding(bottom = 10.dp),
+                                        verticalAlignment = Alignment.CenterVertically,
+                                    ) {
+                                        Text(
+                                            "⭐$rating",
+                                            fontSize = 15.sp,
+                                            color = Color.Black,
+                                            modifier = Modifier.padding(end = 10.dp)
+                                        )
+                                        Text(
+                                            " $students Std", fontFamily = font2,
+                                            fontSize = 12.sp,
+                                            color = Color(0, 0, 0),
+                                        )
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Divider(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 10.dp),
+                        color = Color.Green,
+                        thickness = 0.5.dp
+                    )
+                }
+            }
+        }
     }
 
     @Composable

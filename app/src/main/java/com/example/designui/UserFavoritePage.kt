@@ -6,9 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.gestures.awaitFirstDown
-import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -156,8 +154,7 @@ class UserFavoritePage : ComponentActivity() {
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(start = 5.dp)
-            )
-            {
+            ) {
                 items(showList) {
                     val items = it
                     Card(

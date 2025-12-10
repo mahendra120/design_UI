@@ -27,9 +27,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Bookmark
 import androidx.compose.material.icons.filled.BookmarkBorder
-import androidx.compose.material.icons.filled.FavoriteBorder
-import androidx.compose.material.icons.filled.NotificationsActive
-import androidx.compose.material.icons.filled.Save
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
@@ -527,7 +524,6 @@ class MainActivity : ComponentActivity() {
                                     contentScale = ContentScale.Crop
                                 )
                             }
-                            Spacer(modifier = Modifier.padding(top = 5.dp))
                             Text("$name ", fontFamily = font2, fontSize = 17.sp)
                         }
                     }

@@ -374,6 +374,7 @@ class Online_Courses : ComponentActivity() {
             }
         }
     }
+
     @Composable
     fun Courses() {
         data class Courses(
@@ -554,6 +555,7 @@ class Online_Courses : ComponentActivity() {
                                 Image(
                                     painter = painterResource(image),
                                     contentDescription = null,
+                                    modifier = Modifier.fillMaxSize(),
                                     contentScale = ContentScale.Crop
                                 )
                             }
