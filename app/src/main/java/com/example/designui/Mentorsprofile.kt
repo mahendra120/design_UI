@@ -113,7 +113,8 @@ class Mentorsprofile : ComponentActivity() {
                                 .size(130.dp),
                             border = BorderStroke(.5.dp, color = Color(0, 0, 0)),
                             shape = RoundedCornerShape(120.dp),
-                        ) {
+                        )
+                        {
                             if (image != null) {
                                 Image(
                                     painter = painterResource(image.toInt()),
@@ -425,7 +426,8 @@ class Mentorsprofile : ComponentActivity() {
                                     Spacer(modifier = Modifier.padding(top = 5.dp))
                                     Row(
                                         modifier = Modifier
-                                            .fillMaxWidth().padding(bottom = 10.dp),
+                                            .fillMaxWidth()
+                                            .padding(bottom = 10.dp),
                                         verticalAlignment = Alignment.CenterVertically,
                                     ) {
                                         Text(
